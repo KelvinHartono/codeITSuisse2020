@@ -8,7 +8,7 @@ from codeitsuisse import app;
 logger = logging.getLogger(__name__)
 
 def findMoves(data):
-  bsize,numPlayers = data["boardSize"]*data["boardSize"],data["players"]
+  bsize,numPlayers = data["boardSize"],data["players"]
   jumpsGood = {}
   jumpsBad = {}
   goodMove = False
