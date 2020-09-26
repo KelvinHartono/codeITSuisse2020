@@ -36,7 +36,7 @@ def saladSpree(num,prices):
 @app.route('/salad-spree', methods=['POST'])
 def salad():
   data = request.get_json()
-  logging.info("data sent for evaluation {}".format(data))
+  # logging.info("data sent for evaluation {}".format(data))
   result = saladSpree(data["number_of_salads"],data["salad_prices_street_map"])
-  logging.info("My result :{}".format(result))
+  # logging.info("My result :{}".format(result))
   return json.dumps({'result':result})
