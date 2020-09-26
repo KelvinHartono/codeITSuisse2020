@@ -24,6 +24,7 @@ def findMoves(data):
     if goodMove:
       if bsize-currMainCell<=6:
         moves.append(bsize-currMainCell)
+        currMainCell+=bsize-currMainCell
         break
       bestMove=(1,currMainCell+1,False)
       stay = False
@@ -54,9 +55,10 @@ def findMoves(data):
           if jumpsBad[currOtherCell+i]!=0 and jumpsBad[currOtherCell+i]<worstMove[1]:
             worstMove=(i,jumpsBad[currOtherCell+i],True)
             stay = False
-          elif jumpsBad[currOtherCell+i]==0 and currOtherCell+i+6<worstMove[1]:
-            worstMove = (i,currOtherCell+i+6,False)
-            stay = True
+          elif jumpsBad[currOtherCell+i]==0 and currOtherCell<worstMove[1]:
+            print("IM STUCK BIACHHH")
+            worstMove = (i,currOtherCell,False)
+            stay = False
         elif currOtherCell+i in jumpsGood:
           continue
         else:
@@ -69,6 +71,7 @@ def findMoves(data):
         currOtherCell = worstMove[1]
       if not stay:
         goodMove = not goodMove
+  # print(currMainCell,currOtherCell)
   return moves
 
             
