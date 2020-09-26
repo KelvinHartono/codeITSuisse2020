@@ -9,23 +9,27 @@ logger = logging.getLogger(__name__)
 
 def saladSpree(num,prices):
   def checkPrice(arr):
+    temp = [(float("inf"),num)]*len(arr)
     minPrice = float("inf")
     if arr[0] == "X":
-      arr[0] = (float("inf"),num)
+      temp[0] = (float("inf"),num)
     else:
-      arr[0] = (int(arr[0]),num-1)
+      temp[0] = (int(arr[0]),num-1)
     for i in range(1,len(arr)):
       if arr[i]!="X":
-        if arr[i-1][0]!=float("inf"):
-          arr[i] = (int(arr[i])+arr[i-1][0],arr[i-1][1]-1)
-          if arr[i][1]==0:
-            minPrice = min(minPrice,arr[i][0])
+        if temp[i-1][0]!=float("inf"):
+          if temp[i-1][1]>0:
+            temp[i] = (int(arr[i])+temp[i-1][0],temp[i-1][1]-1)
+          elif temp[i-1][1]==0:
+            temp[i] = (int(arr[i])+temp[i-1][0]-int(arr[i-num]),temp[i-1][1])
+          if temp[i][1]==0:
+            minPrice = min(minPrice,temp[i][0])
         else:
-          arr[i] = (int(arr[i]),num-1)
+          temp[i] = (int(arr[i]),num-1)
       else:
-        if i>len(arr)-num:
+        if i>len(temp)-num:
           break
-        arr[i] = (float("inf"),num)
+        temp[i] = (float("inf"),num)
     return minPrice
   retval = float("inf")
   for x in prices:

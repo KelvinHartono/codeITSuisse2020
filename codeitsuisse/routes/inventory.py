@@ -28,7 +28,6 @@ def inv(item,datas):
       for j in range(1, n + 1):
         if word1temp[i - 1] == word2temp[j - 1]:
           table[i][j] = (table[i - 1][j - 1][0],table[i - 1][j - 1][1]+word1[i-1])#"N"
-          print(i,j,table[i - 1][j - 1][0],table[i - 1][j - 1][1]+word1[i-1],table[i][j])
         else:
           if table[i - 1][j][0]<=table[i][j - 1][0] and table[i - 1][j][0]<=table[i - 1][j - 1][0]:
             table[i][j] = (table[i - 1][j][0]+1,table[i - 1][j][1]+"-"+word1[i - 1])#"A"
@@ -52,6 +51,7 @@ def inventory():
   for da in data:
     res = {}
     res["searchItemName"]=da["searchItemName"]
-    res['searchResult']=inv(da["searchItemName"],da["items"])
+    res["searchResult"]=inv(da["searchItemName"],da["items"])
     result.append(res)
-  return json.dumps(result)
+  ret = json.dumps(result)
+  return ret
