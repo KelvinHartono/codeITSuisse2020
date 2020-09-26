@@ -17,7 +17,7 @@ def fruity(data):
   return res
 
 @app.route('/fruitbasket', methods=['POST'])
-def social():
+def fruit():
   data = request.get_json()["tests"]
   logging.info("data sent for evaluation {}".format(data))
   return json.dump(fruity(data))
