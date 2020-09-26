@@ -16,7 +16,7 @@ def fruity(data):
     res+=x*data[el]
   return res
 
-@app.route('/social_distancing', methods=['POST'])
+@app.route('/fruitbasket', methods=['POST'])
 def social():
   data = request.get_json()["tests"]
   logging.info("data sent for evaluation {}".format(data))

@@ -5,3 +5,4 @@ import codeitsuisse.routes.square
 import codeitsuisse.routes.saladSpree
 import codeitsuisse.routes.inventory
 import codeitsuisse.routes.socialDistancing
+import codeitsuisse.routes.fruitbasket
