@@ -47,6 +47,10 @@ def inv(item,datas):
 @app.route('/inventory-management', methods=['POST'])
 def inventory():
   data = request.get_json()[0]
-  result = inv(data["searchItemName"],data["items"])
+  logging.info("data sent for evaluation {}".format(data))
+  try:
+    result = inv(data["searchItemName"],data["items"])
+  except Exception as e:
+    logging.error(e)
   logging.info("My result :{}".format(result))
   return json.dumps({'searchItemName':data["searchItemName"],'searchResult':result})
