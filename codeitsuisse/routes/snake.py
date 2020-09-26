@@ -41,9 +41,9 @@ def findMoves(data):
         if jumpsGood[currMainCell+i]!=0 and jumpsGood[currMainCell+i]>bestMove[1]:
           bestMove=(i,jumpsGood[currMainCell+i],True)
           stay = False
-        elif jumpsGood[currMainCell+i]==0 and currMainCell+i+6>bestMove[1]:
-          bestMove = (i,currMainCell+i+6,False)
-          stay = True
+        # elif jumpsGood[currMainCell+i]==0 and currMainCell+i+1>bestMove[1]:
+        #   bestMove = (i,currMainCell+i+1,False)
+        #   stay = True
       elif currMainCell+i in jumpsBad:
         continue
       else:
@@ -54,6 +54,8 @@ def findMoves(data):
     currMainCell = currMainCell+bestMove[0]
     if bestMove[2]:
       currMainCell = bestMove[1]
+    if stay==True:
+      print("hell naw")
   print(currMainCell,len(moves))
   return moves
 
