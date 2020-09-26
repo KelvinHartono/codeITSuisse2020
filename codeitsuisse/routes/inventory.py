@@ -8,7 +8,7 @@ from codeitsuisse import app;
 logger = logging.getLogger(__name__)
 
 def inv(item,datas):
-  def minDistance(word2, word1):
+  def minDistance(word1,word2):
     m = len(word1)
     n = len(word2)
     word1temp = word1.lower()
@@ -22,7 +22,7 @@ def inv(item,datas):
     temp = ""
     for j in range(n + 1):
       if j>0:
-        temp+="-"+word2[j-1]
+        temp+="+"+word2[j-1]
       table[0][j] = (j,temp)
     for i in range(1, m + 1):
       for j in range(1, n + 1):
