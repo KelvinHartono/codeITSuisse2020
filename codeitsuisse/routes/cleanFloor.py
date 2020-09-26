@@ -33,8 +33,10 @@ def cleanFloor(data):
     step+=1
 
   if data[-1]>0:
-    step+=data[-1]*2+1
-  print(step)
+    if data[-1]%2==1:
+      step+=data[-1]*2+1
+    else:
+      step+=data[-1]*2
   return step
 
 @app.route('/clean_floor', methods=['POST'])
