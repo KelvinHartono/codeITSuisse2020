@@ -8,3 +8,4 @@ import codeitsuisse.routes.socialDistancing
 import codeitsuisse.routes.fruitbasket
 import codeitsuisse.routes.cleanFloor
 import codeitsuisse.routes.infect
+import codeitsuisse.routes.snake
