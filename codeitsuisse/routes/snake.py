@@ -18,7 +18,7 @@ def findMoves(data):
     if temp[0]>temp[1]:
       jumpsBad[temp[0]]=temp[1]
     else:
-      jumpsGood[temp[1]]=temp[0]
+      jumpsGood[temp[0]]=temp[1]
   currMainCell,currOtherCell, moves = 1,1, []
   while currMainCell<bsize:
     if goodMove:
@@ -55,7 +55,7 @@ def findMoves(data):
           if jumpsBad[currOtherCell+i]!=0 and jumpsBad[currOtherCell+i]<worstMove[1]:
             worstMove=(i,jumpsBad[currOtherCell+i],True)
             stay = False
-          elif jumpsBad[currOtherCell+i]==0 and currOtherCell<worstMove[1]:
+          elif jumpsBad[currOtherCell+i]==0:
             worstMove = (i,currOtherCell,False)
             stay = True
         elif currOtherCell+i in jumpsGood:
@@ -71,7 +71,10 @@ def findMoves(data):
       if stay:
         for _ in range(numPlayers-1):
           moves.append(6)
+        currOtherCell-=6
       goodMove = not goodMove
+  # print(jumpsBad)
+  # print(jumpsGood)
   print(currMainCell,currOtherCell)
   return moves
 
