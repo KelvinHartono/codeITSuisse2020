@@ -56,9 +56,8 @@ def findMoves(data):
             worstMove=(i,jumpsBad[currOtherCell+i],True)
             stay = False
           elif jumpsBad[currOtherCell+i]==0 and currOtherCell<worstMove[1]:
-            print("IM STUCK BIACHHH")
             worstMove = (i,currOtherCell,False)
-            stay = False
+            stay = True
         elif currOtherCell+i in jumpsGood:
           continue
         else:
@@ -69,9 +68,11 @@ def findMoves(data):
       currOtherCell = currOtherCell+worstMove[0]
       if worstMove[2]:
         currOtherCell = worstMove[1]
-      if not stay:
-        goodMove = not goodMove
-  # print(currMainCell,currOtherCell)
+      if stay:
+        for _ in range(numPlayers-1):
+          moves.append(6)
+      goodMove = not goodMove
+  print(currMainCell,currOtherCell)
   return moves
 
             
