@@ -46,7 +46,7 @@ def inv(item,datas):
 
 @app.route('/inventory-management', methods=['POST'])
 def inventory():
-  data = request.get_json()
+  data = request.get_json()[0]
   result = inv(data["searchItemName"],data["items"])
   logging.info("My result :{}".format(result))
   return json.dumps({'searchItemName':data["searchItemName"],'searchResult':result})
