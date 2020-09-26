@@ -30,7 +30,7 @@ def socialDistance(data):
     res+=recurse(i+spaces+1,people-1,spaces,seats)
   return res
 
-@app.route('/social-distancing', methods=['POST'])
+@app.route('/social_distancing', methods=['POST'])
 def social():
   data = request.get_json()["tests"]
   logging.info("data sent for evaluation {}".format(data))
