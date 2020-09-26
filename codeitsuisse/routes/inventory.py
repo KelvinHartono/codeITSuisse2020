@@ -53,5 +53,4 @@ def inventory():
     res["searchItemName"]=da["searchItemName"]
     res["searchResult"]=inv(da["searchItemName"],da["items"])
     result.append(res)
-  ret = json.dumps(result)
-  return ret
+  return jsonify(result)
