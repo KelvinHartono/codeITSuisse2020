@@ -28,7 +28,7 @@ def findMoves(data):
     if bsize-currMainCell<=6:
       for _ in range(numPlayers-1):
         for i in range(1,7):
-          if i+currMainCell not in jumpsGood and i+currMainCell!=bsize:
+          if i+currMainCell not in jumpsGood and i+currMainCell not in jumpsBad and i+currMainCell!=bsize:
             moves.append(i)
             break
       moves.append(bsize-currMainCell)
@@ -56,6 +56,7 @@ def findMoves(data):
       currMainCell = bestMove[1]
     if stay==True:
       print("hell naw")
+  # print(jumpsGood)
   print(currMainCell,len(moves))
   return moves
 
