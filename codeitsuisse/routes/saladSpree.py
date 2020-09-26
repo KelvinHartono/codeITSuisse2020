@@ -30,4 +30,4 @@ def salad():
   logging.info("data sent for evaluation {}".format(data))
   result = saladSpree(data["number_of_salads"],data["salad_prices_street_map"])
   logging.info("My result :{}".format(result))
-  return json.dumps(result)
+  return {'result':result}
