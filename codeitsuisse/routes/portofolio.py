@@ -11,11 +11,11 @@ logger = logging.getLogger(__name__)
 @app.route('/optimizedportfolio', methods=['POST'])
 def evaluate_optimizeportfolio():
     data = request.get_json()
-    logging.info("data sent for evaluation {}".format(data))
+    # logging.info("data sent for evaluation {}".format(data))
     result = []
     for testcase in data["inputs"]:
         result.append(optimizeportfolio(testcase["Portfolio"], testcase["IndexFutures"]))
-    logging.info("My result :{}".format(result))
+    # logging.info("My result :{}".format(result))
     return json.dumps({"outputs":result})
     
 def round_integer(num):
@@ -40,7 +40,7 @@ def optimizeportfolio(portfolio, indexFutures_list):
     for i in range(len(indexFutures)):
         hedgeRatio = indexFutures[i]["CoRelationCoefficient"] * (spotPrcVol/indexFutures[i]["FuturePrcVol"])
         roundedHedgeRatio = round_decimal(hedgeRatio, 3)
-        numContract = round_integer(roundedHedgeRatio * portfolio["Value"] / (indexFutures[i]["IndexFuturePrice"]*indexFutures[i]["Notional"]))
+        numContract = round_integer(hedgeRatio * portfolio["Value"] / (indexFutures[i]["IndexFuturePrice"]*indexFutures[i]["Notional"]))
         if roundedHedgeRatio > optimalHedgeRatio:
           continue
         elif (hedgeRatio < optimalHedgeRatio) or (hedgeRatio == optimalHedgeRatio and indexFutures[i]["FuturePrcVol"] < minVol) or (hedgeRatio == optimalHedgeRatio and indexFutures[i]["FuturePrcVol"] == minVol and numContract < minNumContract):
