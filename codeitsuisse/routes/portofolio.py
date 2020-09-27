@@ -41,12 +41,12 @@ def optimizeportfolio(portfolio, indexFutures_list):
         hedgeRatio = indexFutures[i]["CoRelationCoefficient"] * (spotPrcVol/indexFutures[i]["FuturePrcVol"])
         roundedHedgeRatio = round_decimal(hedgeRatio, 3)
         numContract = round_integer(roundedHedgeRatio * portfolio["Value"] / (indexFutures[i]["IndexFuturePrice"]*indexFutures[i]["Notional"]))
-        if hedgeRatio > optimalHedgeRatio:
+        if roundedHedgeRatio > optimalHedgeRatio:
           continue
-        if (hedgeRatio < optimalHedgeRatio) or (hedgeRatio == optimalHedgeRatio and indexFutures[i]["FuturePrcVol"] < minVol) or (hedgeRatio == optimalHedgeRatio and indexFutures[i]["FuturePrcVol"] == minVol and numContract < minNumContract):
+        elif (hedgeRatio < optimalHedgeRatio) or (hedgeRatio == optimalHedgeRatio and indexFutures[i]["FuturePrcVol"] < minVol) or (hedgeRatio == optimalHedgeRatio and indexFutures[i]["FuturePrcVol"] == minVol and numContract < minNumContract):
           idx = i
           minVol = indexFutures[i]["FuturePrcVol"]
-          optimalHedgeRatio = hedgeRatio
+          optimalHedgeRatio = roundedHedgeRatio
           minNumContract = numContract
-    result = {"HedgePositionName": indexFutures[idx]["Name"], "OptimalHedgeRatio": round_decimal(optimalHedgeRatio, 3), "NumFuturesContract": minNumContract}
+    result = {"HedgePositionName": indexFutures[idx]["Name"], "OptimalHedgeRatio": optimalHedgeRatio, "NumFuturesContract": minNumContract}
     return result
