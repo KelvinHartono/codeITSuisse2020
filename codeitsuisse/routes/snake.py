@@ -34,7 +34,7 @@ def findMoves(data):
       moves.append(bsize-currMainCell)
       currMainCell+=bsize-currMainCell
       break
-    bestMove=(1,currMainCell+1,False)
+    bestMove=(6,currMainCell+6,False)
     stay = False
     for i in range(1,7):
       if currMainCell+i in jumpsGood:
@@ -56,7 +56,7 @@ def findMoves(data):
       currMainCell = bestMove[1]
     if stay==True:
       print("hell naw")
-  # print(jumpsGood)
+  print(jumpsGood,jumpsBad)
   print(currMainCell,len(moves))
   return moves
 
