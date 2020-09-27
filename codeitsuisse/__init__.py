@@ -10,3 +10,4 @@ import codeitsuisse.routes.cleanFloor
 import codeitsuisse.routes.infect
 import codeitsuisse.routes.snake
 import codeitsuisse.routes.supermarket
+import codeitsuisse.routes.portofolio
